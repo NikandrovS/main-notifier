@@ -5,7 +5,7 @@ const ticket = require("./methods/tickets");
 const axios = require("axios");
 
 var CronJob = require("cron").CronJob;
-var job = new CronJob("0 */5 * * * *", function () {
+var job = new CronJob("*/30 * * * * *", function () {
   const now = new Date();
   console.log(now.toTimeString());
   getPrice();
