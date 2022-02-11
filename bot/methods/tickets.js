@@ -18,7 +18,7 @@ module.exports.getTicketByUserId = async (user_id) => {
         updatedAt: 0,
         __v: 0,
       }
-    ).sort({ createdAt: -1 });
+    ).sort({ price: -1 });
   } catch (err) {
     console.error(err);
   }
