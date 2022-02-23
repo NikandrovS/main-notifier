@@ -18,15 +18,14 @@ viewTicketsScene.enter(async (ctx) => {
     const tickets = await ticket.getTicketByUserId(user_id);
     ctx.scene.state.ticketMessageIds = [];
 
-    await Promise.all(
-      tickets.map(async (t) => {
-        const { message_id } = await ctx.reply(
-          t.price + "$",
-          delete_keyboard(t.id)
-        );
-        ctx.scene.state.ticketMessageIds.push(message_id);
-      })
-    );
+    for (const ticket of tickets) {
+      const { message_id } = await ctx.reply(
+        ticket.price + "$",
+        delete_keyboard(ticket.id)
+      );
+      ctx.scene.state.ticketMessageIds.push(message_id);
+    }
+
   } catch (err) {
     console.error(err);
     ctx.reply("Возникла ошибка");
